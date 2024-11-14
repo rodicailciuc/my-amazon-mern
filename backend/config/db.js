@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import path , { dirname } from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-// construct path 
+// construct path
 const __filename = fileURLToPath(import.meta.url);
 const PATH = dirname(__filename);
 
