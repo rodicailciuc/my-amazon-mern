@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Item from '../models/item.js';
 
 const itemControllers = {
@@ -36,28 +37,28 @@ const itemControllers = {
             title,
             description,
             category,
-            price,
             quantity,
             image,
+            price,
             user_id
         } = req.body;
         try {
             if (
                 title &&
                 description &&
-                category &&
-                price &&
+                category &&             
                 quantity &&
                 image &&
+                price &&
                 user_id
             ) {
                 const newItem = new Item({
                     title,
                     description,
-                    category,
-                    price,
+                    category,         
                     quantity,
                     image,
+                    price,
                     user_id
                 });
                 await newItem.save();

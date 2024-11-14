@@ -99,6 +99,39 @@ const userControllers = {
             res.status(500).json({ message: err.message });
         }
     },
+    checkAdmin: async (req, res) => {
+        const { id } = req.params;
+        try {
+            const user = await User.findOne({ _id: id });
+            if (!user) {
+                return res.status(400).json({ message: 'User not found!' });
+            }
+
+            if (user.role === 'admin') {
+                res.status(200).json({
+                    message: 'User is admin!',
+                    isAdmin: true
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ message: err.message });
+        }
+    },
+    getUser: async (req, res) => {
+        const { id } = req.params;
+        try {
+            const user = await User.findOne({ _id: id });
+            if (user) {
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: 'User not found!' });
+            }
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ message: err.message });
+        }
+    },
     logout: async (req, res) => {
         res.clearCookie('token');
         res.status(200).json({ message: 'Logout successfully' });
